@@ -1,0 +1,110 @@
+.menu-btn{
+    display: block;
+    right: calc(50% - 25px);
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2;
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after{
+    position: absolute;
+    top:50%;
+    margin-top: -1.5px;
+    left: 50%;
+    margin-left: -10px;
+    width: 20px;
+    height: 3px;
+    background: #111;
+    transition: 0.3s;
+}
+.menu-btn span:before,
+.menu-btn span:after{
+    content: '';
+}
+.menu-btn span:before{
+    transform: translateY(-5px);
+}
+
+.menu-btn-active span{
+    height: 0;
+} 
+.menu-btn span:after{
+    transform: translateY(5px);
+}
+.menu-btn-active span:before{
+    transform: rotate(45deg);
+}
+.menu-btn-active span:after{
+    transform: rotate(-45deg);
+} 
+
+.header-navigation {
+    position: absolute;
+    top: -400px;
+  
+    width: 100%;
+    right: 0;
+}
+.header-navigation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 135px;
+    top: 0;
+    background-color: #fff;
+    opacity: 0.6;
+    z-index: 1;
+}
+.header-navigation > ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header-navigation > ul > li {
+    padding-bottom: 10px;
+
+}
+
+.header-navigation > ul > li > a{
+    position: relative;
+    z-index: 2;
+    color: #111;
+}
+.header-navigation > ul > li:hover{
+    text-decoration: underline;
+}
+.block{
+    top: 90px;
+}
+@media (min-width: 768px) {
+    .header-menu{
+        padding: 0 50px;
+    }
+    .menu-btn{
+        display: none;
+    }
+    .header-navigation{
+        position: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+    }
+    .header-navigation >ul{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;    
+    }
+    .header-navigation >ul>li{
+        padding: 0 1.5em;
+    }
+    .header-navigation::after{
+        display: none;
+    }
+}
