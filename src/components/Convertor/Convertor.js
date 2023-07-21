@@ -8,6 +8,7 @@ function Convertor() {
     const [valueGet, setValueGet] = useState('')
     const [optionGive, setOptionGive] = useState('UAH')
     const [optionGet, setOptionGet] = useState('UAH')
+
     function dateToString(days){
         let dateToday = new Date();
         dateToday.setDate(dateToday.getDate() + days);
@@ -21,12 +22,11 @@ function Convertor() {
         const dateReturn = year + '-' + month + '-' + day;
         return dateReturn;
     }
+
     const minDate = dateToString(-7);
     const maxDate = dateToString(0);
     const [selectData, setSelectData] = useState(maxDate)
 
-    // let selectData = maxDate;
-    
     const currency = [
         {id:1, value: 'UAH'},
         {id:2, value: 'USD'},
@@ -35,6 +35,7 @@ function Convertor() {
         {id:5, value: 'CNY'},
     ];
     const [story, setStory] =useState([])
+
     const exchangeRate = {
         UAH: {'EUR':0.024,'UAH':1,'USD':0.027,'GBR':0.02,'CNY':0.25},
         USD: {'EUR':0.90,'UAH':36.96,'USD':1,'GBR':0.79,'CNY':9.37},
@@ -42,12 +43,10 @@ function Convertor() {
         GBR: {'EUR':1.07,'UAH':44.7,'USD':1.11,'GBR':1,'CNY':11.2},
         CNY: {'EUR':0.07,'UAH':3,'USD':0.08,'GBR':0.06,'CNY':1},
     }
-    function creatConvert( set1, value, e){
-        const targrtValue = e.target.value
-        if(targrtValue != ''){
-            set1(targrtValue)
-        }
-        
+    
+    function creatConvert( setVal1, value1, set1, targetVal, option2){  
+        setVal1(targetVal)
+        convertCurrent(value1, set1, targetVal, option2)
     }
     function creatCount( set1,  e){
         set1(e)
@@ -56,10 +55,13 @@ function Convertor() {
     function convert (set1, e, set2,  option1, option2) {
         const targetValue = e.target.value
         creatCount(set1, targetValue)
-        console.log(option1)
-        console.log(option2)
         const result = (targetValue * (exchangeRate[option1][option2])).toFixed(2)
         set2(result)
+    }
+    function convertCurrent( value1, set1, option1, option2) {
+        const result = (value1 * (exchangeRate[option2][option1])).toFixed(2)
+        console.log(result)
+        set1(result)
     }
     function getData(){
         const data = document.querySelector('#calendar').value
@@ -92,7 +94,7 @@ function Convertor() {
                                 <input type="number" value={valueGive}  onChange={(e) => convert(setValueGive, e, setValueGet,   optionGive, optionGet)}  className="form-element form-input" name="have" placeholder='1000' />
                             </div>
                             <div>
-                                <select name="currency" className="form-element form-currency" onChange={(evt)=> creatConvert( setOptionGive, optionGive, evt )}>
+                                <select name="currency" className="form-element form-currency" onChange={(evt)=> creatConvert(setOptionGive,  valueGive, setValueGet, evt.target.value, optionGet)}>
                                     {
                                         currency.map(curr => (
                                             <option key={curr.id}  value={curr.value}>{curr.value}</option>
@@ -108,7 +110,7 @@ function Convertor() {
                                 <input type="number" name="need" value={valueGet} onChange={(e) => convert(setValueGet, e, setValueGive,  optionGet, optionGive)} className="form-element form-input" placeholder='1000' />
                             </div>
                             <div>
-                                <select name="currency" className="form-currency form-element" onChange={(evt)=> creatConvert(setOptionGet, optionGet, evt )}>
+                                <select name="currency" className="form-currency form-element" onChange={(evt)=> creatConvert(setOptionGet,  valueGet, setValueGive, optionGive, evt.target.value)}>
                                     {
                                         currency.map(curr => (
                                             <option key={curr.id} value={curr.value} >{curr.value}</option>
