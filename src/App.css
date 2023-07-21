@@ -8,8 +8,9 @@
   justify-content: center;
 }
 
-.grid-img{
-  margin-top: 20px;
+.grid-img {
+  margin: 20px 20px 0 20px;
+  max-width: calc(100% - 40px);
 }
 .header__menu{
   display: flex;
@@ -76,7 +77,8 @@ h1, h2{
   margin: 25px 0;
 }
 .button{
-  width: 234px;
+  max-width: 234px;
+  padding: 0 20px;
   height: 60px;
   border-radius: 4px;
   font-weight: 500;
@@ -87,10 +89,11 @@ h1, h2{
 }
 .page{
   flex-direction: column;
-  min-height: 400px;
 
 }
-
+.start__page{
+  padding: 30px 0;
+}
 .page-left>h2 {
   font-weight: 700;
   font-size: 40px;
@@ -137,12 +140,11 @@ main{
 .convertor{
   padding: 65px 10%;
 }
-.convertor .col_1-2{
-  margin: 10px 30px;
-}
+
 .form-container{
   background-color: #fff;
   padding: 50px;
+  max-width: 100%;
 }
 .form-container > h2{
   font-weight: 700;
@@ -157,15 +159,17 @@ main{
 }
 .form{
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
+  flex-direction: column;
 }
 .form-component{
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+.form-element{
+  margin: 0 0 10px 0;
 }
 .form-input{
-  min-width: 220px;
   max-width: 85%;
   padding: 0 20px;
 }
@@ -178,7 +182,6 @@ main{
 .form-currency{
   max-width: 120px;
   height: 63px;
-  margin-left: 20px;
   text-align: center;
 }
 
@@ -191,6 +194,7 @@ main{
   width: 30px;
   margin: 20px auto;
 }
+
 .convertor-btn{
   display: block;
   margin: 0 0 0 auto;
@@ -202,6 +206,7 @@ main{
 }
 .saved-grid{
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 50px;
 }
@@ -267,7 +272,7 @@ footer a{
   }
   .page{
     flex-direction: row;
-    padding: 40px;
+    padding: 10%;
   }
   .grid-img{
     float: right;
@@ -286,15 +291,41 @@ footer a{
     width: 25%;
     padding: 0 50px;
   }
+  .convertor .col_1-2{
+    margin: 10px 30px;
+  }
+  .form{
+    width: 100%;
+  }
+  .form-data{
+    min-width: 220px;
+  }
   .footer-icon{
     position: relative;
     left: -10px;
     margin-right: 0;
   }
 }
-@media (min-width: 1180px) {
+@media (min-width: 900px) {
   .form-wrap{
     flex-direction: row;
+  }
+  .content-right{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .saved-grid{
+    flex-direction: row;
+  }
+}
+@media (min-width: 1180px) {
+  .form{
+    flex-direction: row;
+    align-items: flex-end;
+
+  }
+  .form-element{
+    margin: 0 ;
   }
   .content-right{
     display: flex;
