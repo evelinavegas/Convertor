@@ -44,8 +44,8 @@ function Convertor() {
         CNY: {'EUR':0.07,'UAH':3,'USD':0.08,'GBR':0.06,'CNY':1},
     }
     
-    function creatConvert( setVal1, value1, set1, targetVal, option2){  
-        setVal1(targetVal)
+    function creatConvert( setOption1, value1, set1, targetVal, option2){  
+        setOption1(targetVal)
         convertCurrent(value1, set1, targetVal, option2)
     }
     function creatCount( set1,  e){
@@ -94,7 +94,7 @@ function Convertor() {
                                 <input type="number" value={valueGive}  onChange={(e) => convert(setValueGive, e, setValueGet,   optionGive, optionGet)}  className="form-element form-input" name="have" placeholder='1000' />
                             </div>
                             <div>
-                                <select name="currency" className="form-element form-currency" onChange={(evt)=> creatConvert(setOptionGive,  valueGive, setValueGet, evt.target.value, optionGet)}>
+                                <select name="currency" className="form-element form-currency" onChange={(e) => creatConvert(setOptionGive, valueGive, setValueGet, optionGet, e.target.value, optionGive)}>
                                     {
                                         currency.map(curr => (
                                             <option key={curr.id}  value={curr.value}>{curr.value}</option>
@@ -110,7 +110,7 @@ function Convertor() {
                                 <input type="number" name="need" value={valueGet} onChange={(e) => convert(setValueGet, e, setValueGive,  optionGet, optionGive)} className="form-element form-input" placeholder='1000' />
                             </div>
                             <div>
-                                <select name="currency" className="form-currency form-element" onChange={(evt)=> creatConvert(setOptionGet,  valueGet, setValueGive, optionGive, evt.target.value)}>
+                                <select name="currency" className="form-currency form-element" onChange={(evt)=> creatConvert(setOptionGet,  valueGet, setValueGive, optionGive, evt.target.value, optionGet)}>
                                     {
                                         currency.map(curr => (
                                             <option key={curr.id} value={curr.value} >{curr.value}</option>
