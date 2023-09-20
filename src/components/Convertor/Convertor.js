@@ -60,13 +60,11 @@ function Convertor() {
     }
     function convertCurrent( value1, set1, option1, option2) {
         const result = (value1 * (exchangeRate[option2][option1])).toFixed(2)
-        console.log(result)
         set1(result)
     }
     function getData(){
         const data = document.querySelector('#calendar').value
         setSelectData(data)
-        console.log(selectData)
     } 
     function getStory(){
         const valueStory = {}
